@@ -9,7 +9,7 @@ var express                 = require('express'),
     passportLocalMongoose   = require('passport-local-mongoose');
 
 
-mongoose.connect("mongodb://localhost:27017/sistempakar", { useNewUrlParser: true})
+mongoose.connect("mongodb+srv://jemsco:<m4Ykomputer$>@sistempakars-ldvoz.mongodb.net/test?retryWrites=true", { useNewUrlParser: true})
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
