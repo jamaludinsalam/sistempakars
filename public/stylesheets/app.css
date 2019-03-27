@@ -1,0 +1,195 @@
+body {
+    background-color: black;
+}
+hr {
+	width: 250px;
+	height: 3px;
+	background-color: #3f51b5;
+	border: 0;
+	margin-bottom: 50px;
+}
+
+a.btn {
+	border-radius: 10px;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: center;
+	background-color: #3f51b5;
+    opacity: 1;
+    border: none;
+}
+a.btn:hover {
+	opacity: 1;
+}
+
+button.btn {
+	border-radius: 10px;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: center;
+	background-color: #3f51b5;
+    opacity: 1;
+    border: none;
+}
+button.btn:hover {
+	opacity: 1;
+}
+
+#landing {
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    padding-top: 40vh;
+    
+}
+
+#landing h1 {
+    color: #fff;
+    font: bold 50px "Open Sans", sans-serif;
+    margin-bottom: 15px;
+}
+#landing h3 {
+    color: #fff;
+    font: 30px "Open Sans", sans-serif;
+    margin-bottom: 35px;
+}
+#landing a.btn {
+    padding: 20px 46px;
+}
+
+
+.slideshow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 30s linear infinite; 
+}
+
+.slideshow li:nth-child(1) {
+    background-image: url(../pictures/1.png);
+    
+}
+
+.slideshow li:nth-child(2) {
+    background-image: url(../pictures/machinelearning.jpg);
+    animation-delay: 15s;
+    
+}
+
+@keyframes imageAnimation {
+    0% { 
+        opacity: 0; 
+        animation-timing-function: ease-in;
+      }
+      10% {
+        opacity: 1;
+        animation-timing-function: ease-out;
+      }
+      20% {
+        opacity: 1
+      }
+      
+}
+
+
+
+/* LOGIN */
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 80px;
+    background-color: #f5f5f5;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    min-height: 10vh;
+}
+
+section h3.title {
+    text-transform: uppercase;
+	font: bold 32px "Open Sans", sans-serif;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+section hr{
+    width: 250px;
+	height: 3px;
+	background-color: #3f51b5;
+	border: 0;
+	margin-bottom: 50px;
+}
+.login .grid li h4{
+    font-size: 30px;
+    margin: 25px 0;
+}
+
+.login .grid a {
+    border-radius: 10px;
+	text-transform: uppercase;
+	font-size: 15px;
+	text-align: center;
+	background-color: #d8d8d8;
+	opacity: 1;
+}
+.login .grid button {
+    border-radius: 10px;
+	text-transform: uppercase;
+	font-size: 15px;
+	text-align: center;
+	background-color: #d8d8d8;
+	opacity: 1;
+}
+.login .grid input{
+    border-radius: 15px;
+    text-align: center;
+}
+.grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+ul {
+    list-style: none;
+}
+.login .grid li {
+    padding: 50px;
+    flex-basis: 50%;
+    text-align: center;
+}
+
+.login .grid li i {
+    color: #1e2f8d;
+}
+
+
+
+/* ======================================= */
+
+.panel-collapse {
+    
+}

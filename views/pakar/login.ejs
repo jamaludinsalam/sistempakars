@@ -1,0 +1,75 @@
+<% include ../partials/header %>
+
+<!-- <section class="login">
+    <h3 class="title">Masuk Sebagai</h3>
+    <hr>
+
+    <ul class="grid">
+        <li>
+            <i class="glyphicon glyphicon-user" style="font-size: 4em"></i>
+            <h4 class="title">Operator</h4>
+            <a class="btn btn-default btn-lg" href="/operator/tingkat">Masuk</a>
+        </li>
+        <li>
+            <i class="glyphicon glyphicon-lock" style="font-size: 4em"></i>
+            <form action="/login" method="POST">
+                <h4>Pakar</h4>
+                <input type="text" name="username" id="username" >
+                <div class="form-group">
+                    <input type="password" name="password" id="password">
+                </div>
+                <button class="btn btn-default btn-lg">Masuk</button>
+            </form>
+            
+        </li>
+    </ul>
+    
+    
+</section> -->
+
+		<!-- Start Product Area -->
+<section id="services" class="title-bg section-full">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="product-area-title text-center">
+                    <p class="text-white text-uppercase">Masuk</p>
+                    <h2 class="text-white h1">Sebagai </h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-lg-6 col-sm-6">
+                <div class="single-product">
+                    <div class="icon">
+                        <span class="lnr lnr-magic-wand"></span>
+                    </div>
+                    <div class="desc">
+                        <h4>Operator</h4>
+                        <a class="primary-btn " href="/operator/tingkat">Masuk</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="single-product">
+                    <div class="icon">
+                        <span class="lnr lnr-sun"></span>
+                    </div>
+                    <div class="desc">
+                        <form action="/login" method="POST">
+                            <h4>Pakar</h4>
+                            <input type="hidden" name="username" value="admin">
+                            <div class="single-input color-2 mb-10" style="border-radius:10px ; align-content: center">
+                                <input type="password" name="password"  placeholder="Enter Your Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required="">
+                            </div>
+                            <button class="primary-btn ">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<% include ../partials/footer %>
