@@ -745,6 +745,22 @@ td, th {
   cursor: pointer;
 }
 
+.danger-btn {
+  line-height: 40px;
+  padding: 0 40px;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid #f35811;
+  color: #222222;
+  display: inline-block;
+  font-weight: 600;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+}
+
 .primary-btn:focus {
   outline: none;
 }
@@ -764,6 +780,11 @@ td, th {
   box-shadow: 0px 10px 20px 0px rgba(60, 64, 143, 0.2);
 }
 
+.danger-btn:hover {
+  background: #f35811;
+  color: #fff;
+  box-shadow: 0px 10px 20px 0px rgba(60, 64, 143, 0.2);
+}
 .section-title {
   padding-bottom: 70px;
 }

@@ -1,0 +1,62 @@
+<% include ../partials/header %>
+
+<header class="default-header">
+    <div class="sticky-header" >
+        <div class="container">
+            <div class="header-content d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <a href="#top" class="smooth"><img src="" alt=""></a>
+                </div>
+                <div class="right-bar d-flex align-items-center">
+                    <nav class="d-flex align-items-center">
+                        <ul class="main-menu">
+                                <a href="/pakar/new">Tambah Kasus Baru</a>
+                                <a href="/pakar/show">Lihat Semua Kasus</a>   
+                        </ul>
+                        <a href="#" class="mobile-btn"><span class="lnr lnr-menu"></span></a>
+                    </nav>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<section class="section-full gray-bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="section-title text-center">
+                    <p class="text-uppercase">cacat</p>
+                    <h1 class="text-uppercase">Semua Kasus </h1>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="row">
+            <% pakars.forEach(function(pakar){ %>
+            <div class="col-md-4">
+                <figure class="signle-service">
+                    <img src="/<%= typeof pakar.image != 'undefined' ? pakar.image : '' %>" class="img-fluid" alt="">
+                    <figcaption class="text-center">
+                        <h5 class="text-uppercase"><%= pakar.ciri %></h5>
+                        <p>Jenis Cacat : <%= pakar.jenis %></p>
+                        <p>Berlangsung Pada : <%= pakar.berlangsung %></p>
+                        <p>Penyebab Cacat : <%= pakar.penyebab %></p>
+                        <p>Tingkat Kecacatan : <%= pakar.tingkat %></p>
+                        <!-- <a href="#" class="primary-btn d-inline-flex align-items-center">Edit<span class="lnr lnr-arrow-right"></span></a> -->
+                        <form action="/pakar/delete/<%= pakar._id %>?_method=DELETE" method="POST">
+                            <button class="danger-btn d-inline-flex align-items-center">Hapus<span class="lnr lnr-arrow-right"></span></button>
+                        </form>
+                    </figcaption>
+                </figure>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
+
+<% include ../partials/footer %>

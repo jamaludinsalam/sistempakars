@@ -6,6 +6,7 @@ var pakarSchema = new mongoose.Schema({
     berlangsung: String,
     penyebab: String,
     tingkat: String,
+    image: String,
     created: {type: Date, default: Date.now}
 });
 
