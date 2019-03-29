@@ -209,4 +209,12 @@ router.get("/operator/tingkat", function(req, res){
     res.render("operator/category");
 });
 
+
+//LOGOUT
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/login');
+})
+
+
 module.exports = router;
