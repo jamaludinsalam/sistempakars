@@ -6,7 +6,7 @@
             <div class="col-lg-10">
                 <div class="section-title text-center">
                     <p class="text-uppercase">cacat</p>
-                    <h1 class="text-uppercase"><%= `${pakars.tingkat}` %></h1>
+                    <h1 class="text-uppercase"></h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
             <% pakars.forEach(function(pakar){ %>
             <div class="col-md-4">
                 <figure class="signle-service">
-                    <img src="/agency/img/s1.jpg" class="img-fluid" alt="">
+                    <img src="/<%= typeof pakar.image != 'undefined' ? pakar.image : '' %>" class="img-fluid" alt="">
                     <figcaption class="text-center">
                         <h5 class="text-uppercase"><%= pakar.ciri %></h5>
                         <p>Jenis Cacat : <%= pakar.jenis %></p>
