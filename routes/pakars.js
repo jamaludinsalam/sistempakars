@@ -10,21 +10,6 @@ var express     = require('express'),
 
 
 
-//Check file type
-function checkFileType(file, cb){
-    //Allowed ext
-    var filetypes = /jpeg|jpg|png|gif/;
-    //check ext
-    var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-    //check mime type
-    var mimetype = filetypes.test(file.mimetype);
-
-    if(mimetype && extname){
-        return cb(null, true);
-    } else {
-        cb('Error: Images Only!');
-    }
-}
 
 
 
@@ -122,6 +107,23 @@ router.post('/pakar2', middleware.isLoggedIn , (req, res) => {
         }
     }).single('image');
     
+
+    //Check file type
+    function checkFileType(file, cb){
+        //Allowed ext
+        var filetypes = /jpeg|jpg|png|gif/;
+        //check ext
+        var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        //check mime type
+        var mimetype = filetypes.test(file.mimetype);
+
+        if(mimetype && extname){
+            return cb(null, true);
+        } else {
+            cb('Error: Images Only!');
+        }
+    }
+
 
     upload(req, res, (err) => {
         if(err){
