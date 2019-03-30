@@ -41,7 +41,7 @@
             <% pakars.forEach(function(pakar){ %>
             <div class="col-md-4">
                 <figure class="signle-service">
-                    <img src="/<%= typeof pakar.image != 'undefined' ? pakar.image : '' %>" class="img-fluid" alt="">
+                    <img src="<%= pakar.image %>" class="img-fluid" alt="">
                     <figcaption class="text-center">
                         <h5 class="text-uppercase"><%= pakar.ciri %></h5>
                         <p>Jenis Cacat : <%= pakar.jenis %></p>

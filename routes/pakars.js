@@ -9,22 +9,7 @@ var express     = require('express'),
     path    = require('path');
 
 
-//SET STORAGE ENGINE
-var storage = multer.diskStorage({
-    destination: './public/uploads/',
-    filename: function(req, file, cb){
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
 
-//Init Upload
-var upload = multer({
-    storage: storage,
-    fileFilter: function(req, file, cb){
-        checkFileType(file, cb);
-    }
-}).single('image');
- 
 //Check file type
 function checkFileType(file, cb){
     //Allowed ext
@@ -121,6 +106,23 @@ router.post("/pakar", middleware.isLoggedIn, function(req, res){
 
 //PAKAR POST V2
 router.post('/pakar2', middleware.isLoggedIn , (req, res) => {
+    //SET STORAGE ENGINE
+    var storage = multer.diskStorage({
+        destination: './public/uploads/',
+        filename: function(req, file, cb){
+            cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        }
+    });
+
+    //Init Upload
+    var upload = multer({
+        storage: storage,
+        fileFilter: function(req, file, cb){
+            checkFileType(file, cb);
+        }
+    }).single('image');
+    
+
     upload(req, res, (err) => {
         if(err){
             res.render('pakar/new', {
