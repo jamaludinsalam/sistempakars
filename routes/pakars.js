@@ -11,9 +11,7 @@ var express     = require('express'),
 
 //SET STORAGE ENGINE
 var storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        cb(null, './public/uploads/')
-    },
+    destination: './public/uploads/',
     filename: function(req, file, cb){
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
@@ -140,7 +138,7 @@ router.post('/pakar2', middleware.isLoggedIn , (req, res) => {
                 var berlangsung = req.body.berlangsung;
                 var penyebab = req.body.penyebab;
                 var tingkat = req.body.tingkat;
-                var image = `uploads/${req.file.filename}`;
+                var image = `/uploads/${req.file.filename}`;
             
                 var newPakar = {
                     ciri: ciri,
