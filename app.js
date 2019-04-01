@@ -7,6 +7,7 @@ var express                 = require('express'),
     passport                = require('passport'),
     LocalStrategy           = require('passport-local'),
     methodOverride          = require('method-override'),
+    // fileUpload              = require('express-fileupload'),
     passportLocalMongoose   = require('passport-local-mongoose');
 
 app.use(methodOverride("_method"));
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/views"));
+// app.use(fileUpload({ safeFileNames: true, preserveExtension: true }));
 
 
 

@@ -1,4 +1,5 @@
 var express     = require('express'),
+    // app         = express(),
     router      = express.Router(),
     passport    = require("passport"),
     User        = require("../models/user"),
@@ -6,10 +7,11 @@ var express     = require('express'),
     zzzz     = require("../helpers/storage"),
     middleware  = require("../middleware"),
     multer  = require('multer'),
+    // fileUpload = require('express-fileupload'),
     path    = require('path');
 
 
-
+// app.use(fileUpload({ safeFileNames: true, preserveExtension: true }))
 
 
 
@@ -60,113 +62,196 @@ router.get("/pakar/new", middleware.isLoggedIn, function(req, res){
 });
 
 //PAKAR POST V1
-router.post("/pakar", middleware.isLoggedIn, function(req, res){
-    var ciri = req.body.ciri;
-    var jenis = req.body.jenis;
-    var berlangsung = req.body.berlangsung;
-    var penyebab = req.body.penyebab;
-    var tingkat = req.body.tingkat;
-    var image = req.body.image;
+// router.post("/pakar", middleware.isLoggedIn, function(req, res){
+//     var ciri = req.body.ciri;
+//     var jenis = req.body.jenis;
+//     var berlangsung = req.body.berlangsung;
+//     var penyebab = req.body.penyebab;
+//     var tingkat = req.body.tingkat;
+//     var image = req.body.image;
 
 
-    var newPakar = {
-        ciri: ciri,
-        jenis: jenis,
-        berlangsung: berlangsung,
-        penyebab: penyebab,
-        tingkat: tingkat,
-        image: image
-    }
+//     var newPakar = {
+//         ciri: ciri,
+//         jenis: jenis,
+//         berlangsung: berlangsung,
+//         penyebab: penyebab,
+//         tingkat: tingkat,
+//         image: image
+//     }
 
-    Pakar.create(newPakar, function(err, newlyCreated){
-        if(err) {
-            console.log(err);
-        } else {
-            console.log(newlyCreated);
-            req.logout();
-            res.redirect("/login");
-        }
-    })
-})
+//     Pakar.create(newPakar, function(err, newlyCreated){
+//         if(err) {
+//             console.log(err);
+//         } else {
+//             console.log(newlyCreated);
+//             req.logout();
+//             res.redirect("/login");
+//         }
+//     })
+// })
+
+// SET STORAGE ENGINE
+// var storage = multer.diskStorage({
+//     destination: function(req, file, cb){
+//         cb(null, './public/uploads/')
+//     },
+//     filename: function(req, file, cb){
+//         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//     }
+// });
+
+//Init Upload Original
+// var upload = multer({storage: storage});
 
 //PAKAR POST V2
-router.post('/pakar2', middleware.isLoggedIn , (req, res) => {
-    //SET STORAGE ENGINE
-    var storage = multer.diskStorage({
-        destination: './public/uploads/',
-        filename: function(req, file, cb){
-            cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-        }
-    });
+// router.post('/pakar2', middleware.isLoggedIn , (req, res) => {
+//     //SET STORAGE ENGINE
+//     var storage = multer.diskStorage({
+//         destination: function(req, file, cb){
+//             cb(null, './public/uploads/')
+//         },
+//         filename: function(req, file, cb){
+//             cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//         }
+//     });
 
-    //Init Upload
-    var upload = multer({
-        storage: storage,
-        fileFilter: function(req, file, cb){
-            checkFileType(file, cb);
-        }
-    }).single('image');
-    
+//    // Init Upload
+//     var upload = multer({
+//         storage: storage,
+//         fileFilter: function(req, file, cb){
+//             checkFileType(file, cb);
+//         }
+//     }).single('image');
 
-    //Check file type
-    function checkFileType(file, cb){
-        //Allowed ext
-        var filetypes = /jpeg|jpg|png|gif/;
-        //check ext
-        var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-        //check mime type
-        var mimetype = filetypes.test(file.mimetype);
+//     //Check file type
+//     function checkFileType(file, cb){
+//         //Allowed ext
+//         var filetypes = /jpeg|jpg|png|gif/;
+//         //check ext
+//         var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+//         //check mime type
+//         var mimetype = filetypes.test(file.mimetype);
 
-        if(mimetype && extname){
-            return cb(null, true);
-        } else {
-            cb('Error: Images Only!');
-        }
-    }
+//         if(mimetype && extname){
+//             return cb(null, true);
+//         } else {
+//             cb('Error: Images Only!');
+//         }
+//     }
+
+//     var ciri = req.body.ciri;
+//     var jenis = req.body.jenis;
+//     var berlangsung = req.body.berlangsung;
+//     var penyebab = req.body.penyebab;
+//     var tingkat = req.body.tingkat;
+//     var image = `/uploads/${req.file.filename}`;
+
+//     var newPakar = {
+//         ciri: ciri,
+//         jenis: jenis,
+//         berlangsung: berlangsung,
+//         penyebab: penyebab,
+//         tingkat: tingkat,
+//         image: image
+//     }
 
 
-    upload(req, res, (err) => {
-        if(err){
-            res.render('pakar/new', {
-                msg: err
-            });
-        } else {
-            if(req.file == undefined){
-                res.render('pakar/new', {
-                    msg: 'Error: No file Selected'
-                });
-            } else{
+//     upload(req, res, (err) => {
+//         if(err){
+//             res.render('pakar/new', {
+//                 msg: err
+//             });
+//         } else {
+//             if(req.file == undefined){
+//                 res.render('pakar/new', {
+//                     msg: 'Error: No file Selected'
+//                 });
+//             } else{
                 
-                var ciri = req.body.ciri;
-                var jenis = req.body.jenis;
-                var berlangsung = req.body.berlangsung;
-                var penyebab = req.body.penyebab;
-                var tingkat = req.body.tingkat;
-                var image = `/uploads/${req.file.filename}`;
+//                 var ciri = req.body.ciri;
+//                 var jenis = req.body.jenis;
+//                 var berlangsung = req.body.berlangsung;
+//                 var penyebab = req.body.penyebab;
+//                 var tingkat = req.body.tingkat;
+//                 var image = `/uploads/${req.file.filename}`;
             
-                var newPakar = {
-                    ciri: ciri,
-                    jenis: jenis,
-                    berlangsung: berlangsung,
-                    penyebab: penyebab,
-                    tingkat: tingkat,
-                    image: image
-                }
+//                 var newPakar = {
+//                     ciri: ciri,
+//                     jenis: jenis,
+//                     berlangsung: berlangsung,
+//                     penyebab: penyebab,
+//                     tingkat: tingkat,
+//                     image: image
+//                 }
             
-                Pakar.create(newPakar, function(err, newlyCreated){
-                    if(err) {
-                        console.log(err);
-                    } else {
-                        console.log(newlyCreated);
-                        res.redirect("/pakar/show");
-                    }
-                });
+//                 Pakar.create(newPakar, function(err, newlyCreated){
+//                     if(err) {
+//                         console.log(err);
+//                     } else {
+//                         console.log(newlyCreated);
+//                         res.redirect("/pakar/show");
+//                     }
+//                 });
                 
-            }
+//             }
   
+//             }
+//         });
+//     });
+
+
+//SET STORAGE ENGINE
+var storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, './public/uploads');
+    },
+    filename: function(req, file, cb){
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+// Init Upload
+var upload = multer({ storage: storage }).single('image');
+
+// PAKAR V3 - express-fileupload
+router.post('/pakar3', middleware.isLoggedIn , function(req, res){
+    upload(req, res, function(err){
+        if(err){
+            return res.send("Error Uploading File..!!");
+        }
+        //get data from form and add to Pakar array
+        var ciri = req.body.ciri;
+        var jenis = req.body.jenis;
+        var berlangsung = req.body.berlangsung;
+        var penyebab = req.body.penyebab;
+        var tingkat = req.body.tingkat;
+        if(typeof req.file !== "undefined"){
+            var image = '/uploads/' + req.file.filename;
+        } else {
+            var image = '/uploads/no-image.png';
+        }
+
+        var newPakar = {
+            ciri: ciri,
+            jenis: jenis,
+            berlangsung: berlangsung,
+            penyebab: penyebab,
+            tingkat: tingkat,
+            image: image
+        }
+
+        Pakar.create(newPakar, function(err, newlyCreated){
+            if(err){
+                console.log(err);
+            } else {
+                console.log(newlyCreated);
+                res.redirect('/pakar/show');
             }
         });
     });
+});
+
 
 
 //PAKAR SHOW
