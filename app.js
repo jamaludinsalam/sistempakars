@@ -1,6 +1,6 @@
 var express                 = require('express'),
     app                     = express(),
-    port                    = process.env.PORT || 3000,
+    // port                    = process.env.PORT || 3000,
     mongoose                = require('mongoose'),
     bodyParser              = require('body-parser'),
     User                    = require('./models/user'),
@@ -42,9 +42,12 @@ var pakarRoutes         = require("./routes/pakars"),
 app.use("/", pakarRoutes);
 app.use("/pakar/api", pakarApiRoutes);
 
+//LOCALLY
+// app.listen(port, function(){
+//     console.log("APP IS RUNNING ON PORT " + port);
+// });
 
-
-
-app.listen(port, function(){
-    console.log("APP IS RUNNING ON PORT " + port);
+//PRODUCTION
+app.listen(process.env.PORT, process.env.IP, function(){
+    console.log("APP HAS STARTED");
 });
