@@ -11,7 +11,11 @@ var express                 = require('express'),
     passportLocalMongoose   = require('passport-local-mongoose');
 
 app.use(methodOverride("_method"));
-mongoose.connect("mongodb://jamaludinsalam:Password123@sistempakars-shard-00-00-ldvoz.mongodb.net:27017,sistempakars-shard-00-01-ldvoz.mongodb.net:27017,sistempakars-shard-00-02-ldvoz.mongodb.net:27017/test?ssl=true&replicaSet=sistempakars-shard-0&authSource=admin&retryWrites=true", { useNewUrlParser: true});
+var url = process.env.DATABASEURL || ("mongodb://localhost:27017/sistempakars");
+mongoose.connect(url);
+console.log(process.env.DATABASEURL);
+
+// mongoose.connect("mongodb://jamaludinsalam:Password123@sistempakars-shard-00-00-ldvoz.mongodb.net:27017,sistempakars-shard-00-01-ldvoz.mongodb.net:27017,sistempakars-shard-00-02-ldvoz.mongodb.net:27017/test?ssl=true&replicaSet=sistempakars-shard-0&authSource=admin&retryWrites=true", { useNewUrlParser: true});
 
 // mongoose.connect("mongodb://localhost:27017/sistempakars", { useNewUrlParser: true})
 app.use(bodyParser.json());
@@ -42,12 +46,10 @@ var pakarRoutes         = require("./routes/pakars"),
 app.use("/", pakarRoutes);
 app.use("/pakar/api", pakarApiRoutes);
 
-//LOCALLY
-// app.listen(port, function(){
-//     console.log("APP IS RUNNING ON PORT " + port);
-// });
 
+
+var PORT = process.env.PORT | 3000;
 //PRODUCTION
-app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("APP HAS STARTED");
+app.listen(PORT, process.env.IP, function(){
+    console.log("APP HAS STARTED" + PORT);
 });
