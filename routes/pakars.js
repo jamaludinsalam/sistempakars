@@ -1,13 +1,10 @@
 var express     = require('express'),
-    // app         = express(),
     router      = express.Router(),
     passport    = require("passport"),
     User        = require("../models/user"),
     Pakar       = require("../models/pakar"),
-    zzzz     = require("../helpers/storage"),
     middleware  = require("../middleware"),
     multer  = require('multer'),
-    // fileUpload = require('express-fileupload'),
     path    = require('path');
 
 
