@@ -48,7 +48,7 @@ app.use("/", pakarRoutes);
 
 
 
-var PORT = process.env.PORT | 3000;
+var PORT = process.env.PORT || 3000;
 //PRODUCTION
 app.listen(PORT, process.env.IP, function(){
     console.log("APP HAS STARTED" + PORT);
