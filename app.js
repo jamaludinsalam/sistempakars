@@ -1,14 +1,16 @@
 var express                 = require('express'),
     app                     = express(),
-    // port                    = process.env.PORT || 3000,
     mongoose                = require('mongoose'),
     bodyParser              = require('body-parser'),
     User                    = require('./models/user'),
     passport                = require('passport'),
     LocalStrategy           = require('passport-local'),
     methodOverride          = require('method-override'),
-    // fileUpload              = require('express-fileupload'),
-    passportLocalMongoose   = require('passport-local-mongoose');
+    passportLocalMongoose   = require('passport-local-mongoose'),
+    session                 = require('express-session'),
+    MongoStore              = require('connect-mongo')(session), 
+    multer                  = require('multer'),
+    path                    = require('path');
 
 
 var url = process.env.DATABASEURL || "mongodb://localhost:27017/sistempakars";
@@ -25,7 +27,10 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/views"));
 // app.use(fileUpload({ safeFileNames: true, preserveExtension: true }));
 
-
+app.use(session({
+    secret: 'foo',
+    store: new MongoStore(options)
+}));
 
 app.use(require('express-session')({
     secret: "Jems.co is my second account",
